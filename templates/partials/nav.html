@@ -1,6 +1,6 @@
 <header>
     <div class="main">
-        <a href={{ config.base_url }}>{{ config.title }}</a>
+        <a id="title-link" href="#" data-url="{{ config.base_url }}">{{ config.title }}</a>
 
         <div class="socials">
             {% for social in config.extra.socials | default(value=[]) %}
@@ -26,4 +26,5 @@
         <script>updateItemToggleTheme()</script>
         {% endif %}
     </nav>
+    <script src="{{ get_url(path='js/click.js') }}"></script>
 </header>
