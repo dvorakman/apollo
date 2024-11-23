@@ -24,7 +24,12 @@
 
             <div>
                 <h1 class="title">
-                    <a href={{ page.permalink }}>{{page.title}}</a>
+                    {% set is_internal = page.taxonomies.tags and 'internal' in page.taxonomies.tags %}
+                    {% if is_internal %}
+                    <a href="/internal/posts/{{ page.slug }}">{{ page.title }}</a>
+                    {% else %}
+                    <a href="/public/posts/{{ page.slug }}">{{ page.title }}</a>
+                    {% endif %}
 
                     {% if page.draft %}
                     <span class="draft-label">DRAFT</span>
