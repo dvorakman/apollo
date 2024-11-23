@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block main_content %}
+    <main class="cards">
+        {% set public_projects = get_section(path="public/projects/_index.md") %}
+        {% set internal_projects = get_section(path="internal/projects/_index.md") %}
+        {% set all_projects = public_projects.pages | concat(with=internal_projects.pages) %}
+        {{ post_macros::cards_posts(pages=all_projects) }}
+    </main>
+{% endblock main_content %}

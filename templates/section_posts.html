@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block main_content %}
+    <main class="list">
+        {% set public_posts = get_section(path="public/posts/_index.md") %}
+        {% set internal_posts = get_section(path="internal/posts/_index.md") %}
+        {% set all_posts = public_posts.pages | concat(with=internal_posts.pages) | sort(attribute="date", order="desc") %}
+        {{ post_macros::list_posts(pages=all_posts) }}
+    </main>
+{% endblock main_content %}
