@@ -130,3 +130,22 @@ del {
   overflow-x: auto;
   overflow-y: hidden;
 }
+
+.post-visibility {
+  color: var(--text-1);
+  font-size: 0.9em;
+}
+
+.post-tags {
+  font-size: 0.9em;
+  
+  .post-tag {
+      color: var(--primary-color);
+      border-bottom: none;
+      
+      &:hover {
+          background-color: transparent;
+          text-decoration: underline;
+      }
+  }
+}

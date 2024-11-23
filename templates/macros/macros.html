@@ -226,6 +226,12 @@
                 </h1>
 
                 <div class="meta">
+                    {% if page.relative_path is starting_with("internal/") %}
+                    <span class="post-visibility">[Internal]</span>
+                    {% else %}
+                    <span class="post-visibility">[Public]</span>
+                    {% endif %}
+                    
                     {%- if page.date %}
                         <time>{{ page.date | date(format="%Y-%m-%d") }}</time>
                     {% endif -%}
