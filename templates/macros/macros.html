@@ -21,7 +21,6 @@
     <section>
         <div class="post-header">
             <time>{{ page.date | date(format="%Y-%m-%d") }}</time>
-
             <div>
                 <h1 class="title">
                     <a href="{{ page.permalink }}">{{ page.title }}</a>
@@ -29,29 +28,30 @@
                         <span class="draft-label">DRAFT</span>
                     {% endif %}
                 </h1>
-
                 <div class="meta">
-                    <div class="description">
-                        {% if page.description %}
-                        {{ page.description }}
-                        {% elif page.summary %}
-                        {{ page.summary | safe }}&hellip;
-                        {% else %}
-                        {% set hide_read_more = true %}
-                        {% endif %}
-                    </div>
-
-                    {% if not hide_read_more %}
-                    <a class="readmore" href={{ page.permalink }}>Read more ⟶</a>
+                    {% if page.relative_path is starting_with("internal/") %}
+                        <span class="post-visibility">[Internal]</span>
+                    {% else %}
+                        <span class="post-visibility">[Public]</span>
+                    {% endif %}
+                    
+                    {% if page.taxonomies and page.taxonomies.tags %}
+                        <span class="post-tags">
+                            :: Tags: 
+                            {% for tag in page.taxonomies.tags %}
+                                <a href="{{ get_taxonomy_url(kind='tags', name=tag) }}" class="post-tag">#{{ tag }}</a>
+                                {%- if not loop.last %}, {% endif -%}
+                            {% endfor %}
+                        </span>
                     {% endif %}
                 </div>
             </div>
         </div>
     </section>
-  </li>
+    </li>
     {% endfor -%}
 </ul>
-{% endmacro list_posts %}
+{% endmacro %}
 
 {% macro list_terms(terms) %}
     <ul>
