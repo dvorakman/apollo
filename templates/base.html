@@ -7,7 +7,10 @@
 {% include "partials/header.html" %}
 
 <body>
-    <div class="content">
+    <div id="loading-spinner">
+        <div class="lds-ripple"><div></div><div></div></div>
+    </div>
+    <div class="content" id="main-content">
         {% include "partials/nav.html" %}
 
         {# Post page is the default #}
@@ -26,6 +29,17 @@
         {% include "_giscus_script.html" %}
         {% endif %}
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('loading-spinner').style.display = 'flex';
+            document.getElementById('main-content').style.display = 'none';
+        });
+
+        window.addEventListener('load', function() {
+            document.getElementById('loading-spinner').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+        });
+    </script>
 </body>
 
 </html>
