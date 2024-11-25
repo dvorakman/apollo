@@ -202,8 +202,7 @@
         <script>setTheme(getSavedTheme());</script>
     {% endif %}
 
-    <link rel="preload" href="{{ get_url(path='main.css') }}" as="style" onload="this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="{{ get_url(path='main.css') }}"></noscript>
+    <link rel="stylesheet" href="{{ get_url(path='main.css') }}">
 
     {% if config.extra.stylesheets %}
         {% for stylesheet in config.extra.stylesheets %}
