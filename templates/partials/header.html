@@ -101,10 +101,10 @@
 
     {# Font from cdn or disk #}
     {% if config.extra.use_cdn | default(value=false) %}
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@4.5.8/index.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/chakra-petch@5.1.0/index.min.css">
     {% else %}
-        <link href={{ get_url(path="fonts.css") }} rel="stylesheet" />
+        <link rel="stylesheet" href="{{ get_url(path='fonts.css') }}" media="print" onload="this.media='all'">
+        <noscript><link rel="stylesheet" href="{{ get_url(path='fonts.css') }}"></noscript>
     {% endif %}
 
     {# Analytics #}
@@ -202,7 +202,8 @@
         <script>setTheme(getSavedTheme());</script>
     {% endif %}
 
-    <link rel="stylesheet" type="text/css" media="screen" href={{ get_url(path="main.css") }} />
+    <link rel="preload" href="{{ get_url(path='main.css') }}" as="style" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{ get_url(path='main.css') }}"></noscript>
 
     {% if config.extra.stylesheets %}
         {% for stylesheet in config.extra.stylesheets %}
