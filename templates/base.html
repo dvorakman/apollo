@@ -6,6 +6,26 @@
 
 {% include "partials/header.html" %}
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const mainContent = document.getElementById('main-content');
+        const spinner = document.getElementById('loading-spinner');
+        
+        Promise.all(
+            Array.from(document.styleSheets)
+                .map(stylesheet => {
+                    if (stylesheet.href) {
+                        return fetch(stylesheet.href).catch(() => null);
+                    }
+                    return Promise.resolve(null);
+                })
+        ).then(() => {
+            mainContent.style.visibility = 'visible';
+            spinner.style.display = 'none';
+        });
+    });
+</script>
+
 <body>
     <div id="loading-spinner">
         <div class="lds-ripple"><div></div><div></div></div>
@@ -29,18 +49,6 @@
         {% include "_giscus_script.html" %}
         {% endif %}
     </div>
-<script>
-    document.getElementById('main-content').style.display = 'none';
-    
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('main-content').style.display = 'none';
-    });
-
-    window.addEventListener('load', function() {
-        document.getElementById('loading-spinner').style.display = 'none';
-        document.getElementById('main-content').style.display = 'block';
-    });
-</script>
 </body>
 
 </html>
