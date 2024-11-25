@@ -1,0 +1,18 @@
+name: Notify Parent Repository
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Send Repository Dispatch to Parent
+      uses: peter-evans/repository-dispatch@v3
+      with:
+        token: ${{ secrets.PARENT_REPO_TOKEN }}
+        repository: dvorakman/derekis.cool
+        event-type: submodule_updated
