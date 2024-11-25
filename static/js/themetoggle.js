@@ -34,9 +34,11 @@ function updateItemToggleTheme() {
     if (mode === "dark") {
         htmlElement.classList.remove("light")
         htmlElement.classList.add("dark")
+        htmlElement.style.backgroundColor = "#08050e";
     } else if (mode === "light") {
         htmlElement.classList.remove("dark")
         htmlElement.classList.add("light")
+        htmlElement.style.backgroundColor = "#ffffff"; 
     }
 }
 

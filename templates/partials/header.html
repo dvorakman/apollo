@@ -5,6 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <script>
+        (function() {
+            const theme = localStorage.getItem("theme-storage") || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? "dark" : "light");
+            document.documentElement.classList.add(theme);
+        
+            // Set background color based on theme
+            if (theme === "dark") {
+                document.documentElement.style.backgroundColor = "#08050e"; // Dark background color
+            } else {
+                document.documentElement.style.backgroundColor = "#ffffff"; // Light background color
+            }
+        })();
+    </script>
+
     <style>
         #loading-spinner {
             position: fixed;
